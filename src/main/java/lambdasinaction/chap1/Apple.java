@@ -1,53 +1,22 @@
 package lambdasinaction.chap1;
 
-public class Apple {
-  private int weight = 0;
-  private String color = "";
+public class Apple extends Fruit {
+  public static final int DEFAULT_WEIGHT = 20;
+  public static final String DEFAULT_COLOUR = "green";
 
-  public Apple(int weight, String color) {
-    this.weight = weight;
-    this.color = color;
+  public Apple() {
+    this(DEFAULT_WEIGHT, DEFAULT_COLOUR);
   }
 
-  public Integer getWeight() {
-    return weight;
+  public Apple(int weight, String colour) {
+    super(weight, colour);
   }
 
-  public void setWeight(Integer weight) {
-    this.weight = weight;
-  }
-
-  public String getColor() {
-    return color;
-  }
-
-  public void setColor(String color) {
-    this.color = color;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Apple)) return false;
-
-    Apple apple = (Apple) o;
-
-    if (weight != apple.weight) return false;
-    return color.equals(apple.color);
-
-  }
-
-  @Override
-  public int hashCode() {
-    int result = weight;
-    result = 31 * result + color.hashCode();
-    return result;
+  public Apple(int weight) {
+    this(weight, DEFAULT_COLOUR);
   }
 
   public String toString() {
-    return "Apple{" +
-        "color='" + color + '\'' +
-        ", weight=" + weight +
-        '}';
+    return "Apple {" + "colour='" + colour + '\'' + ", weight=" + weight + '}';
   }
 }

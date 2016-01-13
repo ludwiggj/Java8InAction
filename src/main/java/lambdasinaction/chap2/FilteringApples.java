@@ -10,7 +10,7 @@ public class FilteringApples {
   public static List<Apple> filterGreenApples(List<Apple> inventory) {
     List<Apple> result = new ArrayList<>();
     for (Apple apple : inventory) {
-      if ("green".equals(apple.getColor())) {
+      if ("green".equals(apple.getColour())) {
         result.add(apple);
       }
     }
@@ -18,10 +18,10 @@ public class FilteringApples {
   }
 
   // Take 2
-  public static List<Apple> filterApplesByColor(List<Apple> inventory, String color) {
+  public static List<Apple> filterApplesByColour(List<Apple> inventory, String colour) {
     List<Apple> result = new ArrayList<>();
     for (Apple apple : inventory) {
-      if (apple.getColor().equals(color)) {
+      if (apple.getColour().equals(colour)) {
         result.add(apple);
       }
     }

@@ -36,8 +36,8 @@ public class AppleFilteringTests {
 
   @Test
   public void take2ParameteriseByColourTest() {
-    assertThat(filterApplesByColor(inventory, "green"), is(expectedGreenApples));
-    assertThat(filterApplesByColor(inventory, "red"), is(expectedRedApples));
+    assertThat(filterApplesByColour(inventory, "green"), is(expectedGreenApples));
+    assertThat(filterApplesByColour(inventory, "red"), is(expectedRedApples));
   }
 
   @Test
@@ -64,7 +64,7 @@ public class AppleFilteringTests {
   public void take5AnonymousClass() {
     List<Apple> redApples = filter(inventory, new ApplePredicate() {
       public boolean test(Apple a) {
-        return "red".equals(a.getColor());
+        return "red".equals(a.getColour());
       }
     });
 
@@ -73,13 +73,13 @@ public class AppleFilteringTests {
 
   @Test
   public void take6LambdaExpressions() {
-    assertThat(filter(inventory, (Apple a) -> "red".equals(a.getColor())), is(expectedRedApples));
-    assertThat(filter(inventory, a -> "red".equals(a.getColor())), is(expectedRedApples));
+    assertThat(filter(inventory, (Apple a) -> "red".equals(a.getColour())), is(expectedRedApples));
+    assertThat(filter(inventory, a -> "red".equals(a.getColour())), is(expectedRedApples));
   }
 
   @Test
   public void take7AbstractOverListTypeRedApples() {
-    assertThat(filterT(inventory, a -> "red".equals(a.getColor())), is(expectedRedApples));
+    assertThat(filterT(inventory, a -> "red".equals(a.getColour())), is(expectedRedApples));
   }
 
   @Test

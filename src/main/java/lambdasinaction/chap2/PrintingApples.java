@@ -18,14 +18,14 @@ public class PrintingApples {
     AppleFormatter colourAndWeight = new AppleFormatter() {
       @Override
       public String accept(Apple apple) {
-        return String.format("Colour %s, weight %s", apple.getColor(), apple.getWeight());
+        return String.format("Colour %s, weight %s", apple.getColour(), apple.getWeight());
       }
     };
 
     class AppleFancyFormatter implements AppleFormatter {
       public String accept(Apple apple) {
         String characteristic = apple.getWeight() > 150 ? "heavy" : "light";
-        return "A " + characteristic + " " + apple.getColor() + " apple";
+        return "A " + characteristic + " " + apple.getColour() + " apple";
       }
     }
 
