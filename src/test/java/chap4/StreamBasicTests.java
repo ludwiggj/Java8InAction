@@ -1,6 +1,6 @@
 package chap4;
 
-import lambdasinaction.chap4.Dish;
+import lambdasinaction.chap4.Restaurant;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -14,21 +14,24 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class StreamBasicTests {
 
-  private static List<String> expectedLowCaloricDishNames = Arrays.asList("season fruit", "rice");
-  private static List<String> expectedHighCaloricDishNames = Arrays.asList("pork", "beef", "chicken");
+  private static List<String> expectedLowCaloricDishNames =
+      Arrays.asList(Restaurant.SEASON_FRUIT.getName(), Restaurant.RICE.getName());
+
+  private static List<String> expectedHighCaloricDishNames =
+      Arrays.asList(Restaurant.PORK.getName(), Restaurant.BEEF.getName(), Restaurant.CHICKEN.getName());
 
   @Test
   public void shouldGetLowCaloricDishesNamesInJava7() throws Exception {
-    assertThat(getLowCaloricDishesNamesInJava7(Dish.menu), is(expectedLowCaloricDishNames));
+    assertThat(getLowCaloricDishesNamesInJava7(Restaurant.menu), is(expectedLowCaloricDishNames));
   }
 
   @Test
   public void shouldGetLowCaloricDishesNamesInJava8() throws Exception {
-    assertThat(getLowCaloricDishesNamesInJava8(Dish.menu), is(expectedLowCaloricDishNames));
+    assertThat(getLowCaloricDishesNamesInJava8(Restaurant.menu), is(expectedLowCaloricDishNames));
   }
 
   @Test
   public void shouldGetThreeHighCaloricDishNames() throws Exception {
-    assertThat(getThreeHighCaloricDishNames(Dish.menu), is(expectedHighCaloricDishNames));
+    assertThat(getThreeHighCaloricDishNames(Restaurant.menu), is(expectedHighCaloricDishNames));
   }
 }
