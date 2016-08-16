@@ -2,7 +2,7 @@ package chap3;
 
 import lambdasinaction.chap1.Apple;
 import lambdasinaction.chap3.Predicate;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;

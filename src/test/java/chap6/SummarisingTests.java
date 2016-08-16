@@ -1,11 +1,14 @@
 package chap6;
 
-import lambdasinaction.chap6.Dish;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.expectThrows;
 
 import java.util.ArrayList;
 import java.util.IntSummaryStatistics;
 import java.util.NoSuchElementException;
+
+import lambdasinaction.chap6.Dish;
 
 import static lambdasinaction.chap6.Dish.PORK;
 import static lambdasinaction.chap6.Dish.SEASON_FRUIT;
@@ -40,9 +43,11 @@ public class SummarisingTests {
     assertThat(findMostCalorificDish2(), is(Dish.PORK));
   }
 
-  @Test(expected=NoSuchElementException.class)
+  @Test
   public void shouldFindMostCalorificDishFromEmptyMenu() {
-    findMostCalorificDish(new ArrayList<>());
+    expectThrows(NoSuchElementException.class, () -> {
+      findMostCalorificDish(new ArrayList<>());
+    });
   }
 
   @Test

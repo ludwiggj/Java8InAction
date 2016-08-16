@@ -1,7 +1,7 @@
 package chap4;
 
 import lambdasinaction.chap4.Restaurant;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;

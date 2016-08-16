@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static lambdasinaction.chap1.Apple.GREEN;
+
 public class FilteringApples {
 
   public static List<Apple> filterGreenApples(List<Apple> inventory) {
     List<Apple> result = new ArrayList<>();
     for (Apple apple : inventory) {
-      if ("green".equals(apple.getColour())) {
+      if (GREEN.equals(apple.getColour())) {
         result.add(apple);
       }
     }
@@ -19,7 +21,7 @@ public class FilteringApples {
   public static List<Apple> filterHeavyApples(List<Apple> inventory) {
     List<Apple> result = new ArrayList<>();
     for (Apple apple : inventory) {
-      if (apple.getWeight() > 150) {
+      if (isHeavyApple(apple)) {
         result.add(apple);
       }
     }
@@ -27,11 +29,11 @@ public class FilteringApples {
   }
 
   public static boolean isGreenApple(Apple apple) {
-    return "green".equals(apple.getColour());
+    return GREEN.equals(apple.getColour());
   }
 
   public static boolean isHeavyApple(Apple apple) {
-    return apple.getWeight() > 150;
+    return apple.isHeavy();
   }
 
   public static List<Apple> filterApples(List<Apple> inventory, Predicate<Apple> p) {

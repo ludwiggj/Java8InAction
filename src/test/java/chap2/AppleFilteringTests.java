@@ -6,8 +6,8 @@ import lambdasinaction.chap2.AppleColourPredicate;
 import lambdasinaction.chap2.ApplePredicate;
 import lambdasinaction.chap2.AppleRedAndHeavyPredicate;
 import lambdasinaction.chap2.AppleWeightPredicate;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +24,7 @@ public class AppleFilteringTests {
   private List<Apple> expectedRedApples = Arrays.asList(new Apple(120, "red"));
   private List<Apple> expectedHeavyApples = Arrays.asList(new Apple(155, "green"));
 
-  @Before
+  @BeforeEach
   public void setup() {
     inventory = Arrays.asList(new Apple(80, "green"), new Apple(155, "green"), new Apple(120, "red"));
   }

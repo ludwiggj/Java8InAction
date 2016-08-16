@@ -1,8 +1,8 @@
 package chap3;
 
 import lambdasinaction.chap1.Apple;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +27,7 @@ public class SortingTests {
     }
   }
 
-  @Before
+  @BeforeEach
   public void setUp() {
     inventory = Arrays.asList(
         new Apple(80, "green"), new Apple(155, "green"), new Apple(120, "red"), new Apple(160, "red")

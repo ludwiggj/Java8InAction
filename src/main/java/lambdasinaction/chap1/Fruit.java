@@ -34,7 +34,6 @@ public class Fruit {
 
     if (weight != fruit.weight) return false;
     return colour.equals(fruit.colour);
-
   }
 
   @Override

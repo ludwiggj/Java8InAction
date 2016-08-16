@@ -1,6 +1,6 @@
 package chap5;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static lambdasinaction.chap5.Finding.*;
 import static org.hamcrest.CoreMatchers.is;

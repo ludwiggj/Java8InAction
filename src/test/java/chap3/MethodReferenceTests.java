@@ -2,7 +2,7 @@ package chap3;
 
 import lambdasinaction.chap1.Apple;
 import lambdasinaction.chap1.Fruit;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 import java.util.function.BiFunction;

@@ -2,7 +2,7 @@ package chap5;
 
 import lambdasinaction.chap5.Trader;
 import lambdasinaction.chap5.Transaction;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;

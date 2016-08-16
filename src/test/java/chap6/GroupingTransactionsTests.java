@@ -1,10 +1,9 @@
 package chap6;
 
 import lambdasinaction.chap6.Currency;
-import lambdasinaction.chap6.GroupingTransactions;
 import lambdasinaction.chap6.Transaction;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -19,7 +18,7 @@ public class GroupingTransactionsTests {
 
   public static final Map<Currency, List<Transaction>> expectedGroupedTxs = new HashMap<>();
 
-  @Before
+  @BeforeEach
   public void setUp() {
     expectedGroupedTxs.put(Currency.EUR, Arrays.asList(TX_EUR_1, TX_EUR_2, TX_EUR_3, TX_EUR_4));
     expectedGroupedTxs.put(Currency.USD, Arrays.asList(TX_USD_1, TX_USD_2, TX_USD_3));
