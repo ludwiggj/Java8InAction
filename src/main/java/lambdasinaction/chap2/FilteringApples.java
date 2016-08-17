@@ -4,13 +4,24 @@ import lambdasinaction.chap1.Apple;
 
 import java.util.*;
 
+import static lambdasinaction.chap1.Apple.GREEN;
+
+interface ApplePredicate {
+  boolean test(Apple a);
+}
+
+// Take 7, abstract over list type
+interface Predicate<T> {
+  boolean test(T t);
+}
+
 public class FilteringApples {
 
   // Take 1
   public static List<Apple> filterGreenApples(List<Apple> inventory) {
     List<Apple> result = new ArrayList<>();
     for (Apple apple : inventory) {
-      if ("green".equals(apple.getColour())) {
+      if (GREEN.equals(apple.getColour())) {
         result.add(apple);
       }
     }

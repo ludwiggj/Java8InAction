@@ -16,13 +16,13 @@ public class MeaningOfThis {
     r.run();
   }
 
+  // What will the output be when this code is executed: 4, 5, 6, or 42?
   public static void main(String... args) {
-//		What will the output be when this code is executed: 4, 5, 6, or 42?
     MeaningOfThis m = new MeaningOfThis();
-    m.doIt(); // ???
+    m.doIt();
 
-//    Answer:
-//    The answer is 5, because this refers to the enclosing Runnable, not the enclosing
-//    class MeaningOfThis.
+  //  Answer:
+  //  The answer is 5, because this refers to the enclosing Runnable, not the enclosing
+  //  class MeaningOfThis.
   }
 }

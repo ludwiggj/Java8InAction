@@ -20,7 +20,7 @@
         </dependency>
         <!--
           junit vintage entry needed for junit tests to run. Can remove when
-          2016.2.2 drops, see https://youtrack.jetbrains.com/issue/IDEA-158667
+          2016.2.3 drops, see https://youtrack.jetbrains.com/issue/IDEA-158667
         -->
         <dependency>
             <groupId>org.junit.vintage</groupId>
