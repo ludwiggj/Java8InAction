@@ -1,12 +1,10 @@
-package chap3;
+package lambdasinaction.chap3;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 
-import static lambdasinaction.chap3.Lambdas.map;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -16,11 +14,6 @@ class Butterfly {
 }
 
 public class MiscTests {
-
-  @Test
-  public void shouldMapStringsToLengthso() throws Exception {
-    assertThat(map(Arrays.asList("lambdas", "in", "action"), s -> s.length()), is(Arrays.asList(7, 2, 6)));
-  }
 
   // No boxing
   @Test

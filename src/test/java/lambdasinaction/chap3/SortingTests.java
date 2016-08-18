@@ -1,4 +1,4 @@
-package chap3;
+package lambdasinaction.chap3;
 
 import lambdasinaction.chap1.Apple;
 import org.junit.jupiter.api.BeforeEach;

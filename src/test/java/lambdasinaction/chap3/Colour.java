@@ -1,4 +1,4 @@
-package chap3;
+package lambdasinaction.chap3;
 
 public class Colour {
   int red;

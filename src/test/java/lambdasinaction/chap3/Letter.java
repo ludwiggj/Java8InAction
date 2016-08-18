@@ -1,4 +1,4 @@
-package chap3;
+package lambdasinaction.chap3;
 
 public class Letter {
   public static String addHeader(String text) {

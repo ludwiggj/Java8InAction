@@ -1,4 +1,4 @@
-package chap3;
+package lambdasinaction.chap3;
 
 import org.junit.jupiter.api.Test;
 

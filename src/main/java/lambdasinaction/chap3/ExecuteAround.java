@@ -5,29 +5,33 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class ExecuteAround {
 
-  public static BufferedReader getResource(String resource) {
+  public static final String DATA_FILE_NAME = "lambdasinaction/chap3/data.txt";
+
+  private static BufferedReader getResource(String resource) {
     ClassLoader cl = Thread.currentThread().getContextClassLoader();
     InputStream is = cl.getResourceAsStream(resource);
     return new BufferedReader(new InputStreamReader(is));
   }
 
   public static String processFileLimited() throws IOException {
-    try (BufferedReader br = getResource("lambdasinaction/chap3/data.txt")) {
+    try (BufferedReader br = getResource(DATA_FILE_NAME)) {
       return br.readLine();
     }
   }
 
-  public static String processFile(BufferedReaderProcessor p) throws IOException {
-    try (BufferedReader br = getResource("lambdasinaction/chap3/data.txt")) {
-      return p.process(br);
-    }
-  }
-
+  @FunctionalInterface
   public interface BufferedReaderProcessor {
     String process(BufferedReader b) throws IOException;
+  }
+
+  public static String processFile(BufferedReaderProcessor p) throws IOException {
+    try (BufferedReader br = getResource(DATA_FILE_NAME)) {
+      return p.process(br);
+    }
   }
 
   // Catch exception explicitly if don't want it in lambda's signature
@@ -41,22 +45,6 @@ public class ExecuteAround {
   };
 
   public static void main(String... args) throws IOException {
-    // method we want to refactor to make more flexible
-    String result = processFileLimited();
-    System.out.println(result);
-
-    System.out.println("---");
-
-    String oneLine = processFile((BufferedReader b) -> b.readLine());
-    System.out.println(oneLine);
-
-    System.out.println("---");
-
-    String twoLines = processFile((BufferedReader b) -> b.readLine() + b.readLine());
-    System.out.println(twoLines);
-
-    System.out.println("---");
-
     System.out.println(f.apply("lambdasinaction/chap3/data.txt"));
 
     // Special void-compatibility rule
