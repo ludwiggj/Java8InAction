@@ -5,13 +5,17 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @DisplayName("For each")
 public class ForEachTests {
+
+  @FunctionalInterface
+  public interface Consumer<T>{
+      void accept(T t);
+  }
 
   private static <T> void forEach(List<T> list, Consumer<T> c) {
     for (T i : list) {

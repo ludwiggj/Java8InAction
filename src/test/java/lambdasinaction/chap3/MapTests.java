@@ -6,13 +6,17 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 @DisplayName("Map")
 public class MapTests {
+
+  @FunctionalInterface
+  public interface Function<T, R>{
+      R apply(T t);
+  }
 
   private static <T, R> List<R> map(List<T> list, Function<T, R> f) {
     List<R> result = new ArrayList<>();
