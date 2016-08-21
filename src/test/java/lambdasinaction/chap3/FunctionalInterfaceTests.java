@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.Comparator;
 import java.util.function.*;
 import java.util.function.Predicate;
 
@@ -54,6 +55,9 @@ public class FunctionalInterfaceTests {
     @Test
     @DisplayName("Compare apples")
     public void compareApplesTest() {
+      // The same lambda can be used with multiple different functional interfaces
+      Comparator<Apple> comp = (Apple a1, Apple a2) -> a1.getWeight().compareTo(a2.getWeight());
+
       BiFunction<Apple, Apple, Integer> bif =
           (Apple a1, Apple a2) -> a1.getWeight().compareTo(a2.getWeight());
 
@@ -61,6 +65,7 @@ public class FunctionalInterfaceTests {
           (Apple a1, Apple a2) -> a1.getWeight().compareTo(a2.getWeight());
 
       assertAll("Compare tests",
+          () -> assertThat(comp.compare(APPLE_GREEN_80, APPLE_GREEN_155), is(-1)),
           () -> assertThat(bif.apply(APPLE_GREEN_80, APPLE_GREEN_155), is(-1)),
           () -> assertThat(toIntBif.applyAsInt(APPLE_GREEN_155, APPLE_GREEN_80), is(1))
       );
@@ -164,28 +169,34 @@ public class FunctionalInterfaceTests {
     }
   }
 
-  @Test
-  public void lamdbaCanCaptureAndModifyClassStaticVariable() throws Exception {
-    Runnable r = () -> {
-      assertThat(Butterfly.sampleRate, is(12));
-      Butterfly.sampleRate += 1;
-    };
+  @Nested
+  @DisplayName("Lambdas and Variables")
+  class LambdaVariables {
+    @Test
+    @DisplayName("Lamdba can modify class static variable")
+    public void lamdbaCanCaptureAndModifyClassStaticVariable() {
+      Runnable r = () -> {
+        assertThat(Butterfly.sampleRate, is(12));
+        Butterfly.sampleRate += 1;
+      };
 
-    r.run();
+      r.run();
 
-    assertThat(Butterfly.sampleRate, is(13));
-  }
+      assertThat(Butterfly.sampleRate, is(13));
+    }
 
-  @Test
-  public void lamdbaCanCaptureAndModifyClassInstanceVariable() throws Exception {
-    Butterfly flutter = new Butterfly();
-    Runnable r = () -> {
-      assertThat(flutter.count, is(0));
-      flutter.count += 1;
-    };
+    @Test
+    @DisplayName("Lamdba can modify class instance variable")
+    public void lamdbaCanCaptureAndModifyClassInstanceVariable() {
+      Butterfly flutter = new Butterfly();
+      Runnable r = () -> {
+        assertThat(flutter.count, is(0));
+        flutter.count += 1;
+      };
 
-    r.run();
+      r.run();
 
-    assertThat(flutter.count, is(1));
+      assertThat(flutter.count, is(1));
+    }
   }
 }

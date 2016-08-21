@@ -22,7 +22,7 @@ public class AppleFilteringTests {
 
   @BeforeEach
   public void setup() {
-    inventory = Arrays.asList(APPLE_GREEN_80, APPLE_GREEN_155, APPLE_RED_120);
+    inventory = Arrays.asList(APPLE_GREEN_80, APPLE_GREEN_155, APPLE_RED_120, APPLE_RED_160);
   }
 
   @Test

@@ -49,7 +49,7 @@ public class AppleFilteringTests {
 
     @BeforeEach
     public void setup() {
-      inventory = Arrays.asList(APPLE_GREEN_80, APPLE_GREEN_155, APPLE_RED_120);
+      inventory = Arrays.asList(APPLE_GREEN_80, APPLE_GREEN_155, APPLE_RED_120, APPLE_RED_160);
     }
 
     @Test
@@ -88,7 +88,7 @@ public class AppleFilteringTests {
     @Test
     @DisplayName("predicate for colour and weight")
     public void take4AppleRedAndHeavyPredicate() {
-      assertThat(filter(inventory, new AppleRedAndHeavyPredicate()), is(empty()));
+      assertThat(filter(inventory, new AppleRedAndHeavyPredicate()), is(Arrays.asList(APPLE_RED_160)));
     }
 
     @Test

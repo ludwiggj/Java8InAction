@@ -1,11 +1,13 @@
 package lambdasinaction.chap3;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.function.Function;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class FunctionCompositionTests {
   private Function<Integer, Integer> f = x -> x + 1;
@@ -13,25 +15,32 @@ public class FunctionCompositionTests {
   private Function<String, String> addHeader = Letter::addHeader;
 
   @Test
+  @DisplayName("f andThen g tests")
   public void shouldAndThenFunctions() {
     Function<Integer, Integer> h = f.andThen(g);
 
-    assertThat(h.apply(1), is(4));
-    assertThat(h.apply(2), is(6));
-    assertThat(h.apply(3), is(8));
+    assertAll("andThen",
+        () -> assertThat(h.apply(1), is(4)),
+        () -> assertThat(h.apply(2), is(6)),
+        () -> assertThat(h.apply(3), is(8))
+    );
   }
 
   @Test
+  @DisplayName("f compose g tests")
   public void shouldComposeFunctions() {
     Function<Integer, Integer> h = f.compose(g);
 
-    assertThat(h.apply(1), is(3));
-    assertThat(h.apply(2), is(5));
-    assertThat(h.apply(3), is(7));
+    assertAll("compose",
+        () -> assertThat(h.apply(1), is(3)),
+        () -> assertThat(h.apply(2), is(5)),
+        () -> assertThat(h.apply(3), is(7))
+    );
   }
 
   @Test
-  public void shouldWriteLetter() throws Exception {
+  @DisplayName("should write a letter")
+  public void shouldWriteLetter() {
     Function<String, String> transformationPipeline = addHeader.andThen(Letter::addFooter);
 
     String expectedLetter = "From Raoul, Mario and Alan: Hi! Kind regardz";
@@ -40,7 +49,8 @@ public class FunctionCompositionTests {
   }
 
   @Test
-  public void shouldWriteAndSpellCheckLetter() throws Exception {
+  @DisplayName("should write and spell check letter")
+  public void shouldWriteAndSpellCheckLetter() {
     Function<String, String> transformationPipeline =
         addHeader.andThen(Letter::addFooter).andThen(Letter::checkSpelling);
 

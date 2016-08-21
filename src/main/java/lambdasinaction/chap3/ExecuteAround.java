@@ -1,11 +1,10 @@
 package lambdasinaction.chap3;
 
-import java.io.*;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Consumer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.function.Function;
-import java.util.function.Predicate;
 
 public class ExecuteAround {
 
@@ -34,6 +33,14 @@ public class ExecuteAround {
     }
   }
 
+  public static String processFileWithoutCheckedException(BufferedReaderProcessor p) {
+    try (BufferedReader br = getResource(DATA_FILE_NAME)) {
+      return p.process(br);
+    } catch (IOException e) {
+      throw new RuntimeException("Bugger");
+    }
+  }
+
   // Catch exception explicitly if don't want it in lambda's signature
   private static Function<String, String> f = (String resourceName) -> {
     try {
@@ -41,28 +48,12 @@ public class ExecuteAround {
       return br.readLine();
     } catch (IOException e) {
       throw new RuntimeException("Oh dear");
+    } catch (NullPointerException npe) {
+      throw new RuntimeException(("Oh dear null"));
     }
   };
 
-  public static void main(String... args) throws IOException {
-    System.out.println(f.apply("lambdasinaction/chap3/data.txt"));
-
-    // Special void-compatibility rule
-    // If a lambda has a statement expression as its body, it’s compatible with a function
-    // descriptor that returns void (provided the parameter list is compatible too). For
-    // example, both of the following lines are legal even though the method add of a List
-    // returns a boolean and not void as expected in the Consumer context (T -> void):
-
-    List<Integer> list = Arrays.asList(1, 2, 3);
-
-    // Predicate has a boolean return
-    Predicate<Integer> p = i -> list.add(i);
-
-    // Consumer has a void return
-    Consumer<Integer> b = i -> list.add(i);
-
-    // Quiz 3.5 - Why doesn't the following compile?
-    // Object o = () -> {System.out.println("Tricky example");};
-    Runnable r = () -> {System.out.println("Tricky example");};
+  public static String processFileWithoutCheckedException2(String resourceName) {
+    return f.apply(resourceName);
   }
 }
