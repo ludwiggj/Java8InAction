@@ -1,5 +1,4 @@
 package lambdasinaction.chap4;
-import java.util.*;
 
 public class Dish {
 

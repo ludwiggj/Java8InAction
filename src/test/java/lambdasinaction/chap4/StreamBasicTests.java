@@ -1,24 +1,29 @@
-package chap4;
+package lambdasinaction.chap4;
 
-import lambdasinaction.chap4.Restaurant;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static lambdasinaction.chap4.StreamBasic.getLowCaloricDishesNamesInJava7;
-import static lambdasinaction.chap4.StreamBasic.getLowCaloricDishesNamesInJava8;
-import static lambdasinaction.chap4.StreamBasic.getThreeHighCaloricDishNames;
+import static java.util.stream.Collectors.*;
+import static lambdasinaction.chap4.Restaurant.*;
+import static lambdasinaction.chap4.StreamBasic.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class StreamBasicTests {
 
   private static List<String> expectedLowCaloricDishNames =
-      Arrays.asList(Restaurant.SEASON_FRUIT.getName(), Restaurant.RICE.getName());
+      Arrays.asList(SEASON_FRUIT, RICE)
+          .stream()
+          .map(Dish::getName)
+          .collect(toList());
 
   private static List<String> expectedHighCaloricDishNames =
-      Arrays.asList(Restaurant.PORK.getName(), Restaurant.BEEF.getName(), Restaurant.CHICKEN.getName());
+      Arrays.asList(PORK, BEEF, CHICKEN)
+                .stream()
+                .map(Dish::getName)
+                .collect(toList());
 
   @Test
   public void shouldGetLowCaloricDishesNamesInJava7() throws Exception {
