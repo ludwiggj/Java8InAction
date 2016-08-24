@@ -1,16 +1,14 @@
 package lambdasinaction.chap4;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
-public class StreamBasic {
+public class Streaming {
 
-  public static List<String> getLowCaloricDishesNamesInJava7(List<Dish> dishes) {
+  public static List<String> getSortedLowCaloricDishesNamesInJava7(List<Dish> dishes) {
     List<Dish> lowCaloricDishes = new ArrayList<>();
     for (Dish d : dishes) {
       if (d.getCalories() < 400) {
@@ -29,7 +27,7 @@ public class StreamBasic {
     return lowCaloricDishesName;
   }
 
-  public static List<String> getLowCaloricDishesNamesInJava8(List<Dish> dishes) {
+  public static List<String> getSortedLowCaloricDishesNamesInJava8(List<Dish> dishes) {
     return dishes.stream()
         .filter(d -> d.getCalories() < 400)
         .sorted(comparing(Dish::getCalories))
@@ -49,5 +47,12 @@ public class StreamBasic {
         })
         .limit(3)
         .collect(toList());
+  }
+
+  public static Map<Dish.Type, List<Dish>> getDishesByType(List<Dish> dishes) {
+    Map<Dish.Type, List<Dish>> dishesByType =
+        dishes.stream().collect(groupingBy(Dish::getType));
+
+    return dishesByType;
   }
 }
