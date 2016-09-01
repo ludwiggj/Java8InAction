@@ -9,20 +9,23 @@ import static java.util.stream.Collectors.toList;
 import static lambdasinaction.chap4.Dish.Type.FISH;
 import static lambdasinaction.chap4.Restaurant.MYSTERY_FISH;
 import static lambdasinaction.chap4.Restaurant.NOT_VEGETARIAN;
-import static lambdasinaction.chap4.Restaurant.menu;
 
 public class NumericStreams {
 
-  public static int getMenuTotalCalories() {
+  public static int getMenuTotalCalories(List<Dish> menu) {
     return menu.stream()
         .mapToInt(Dish::getCalories)
         .sum();
   }
 
-  public static OptionalInt getMostCalorificDishInMenu() {
+  public static OptionalInt getMostCalorificDishInMenu(List<Dish> menu) {
     return menu.stream()
         .mapToInt(Dish::getCalories)
         .max();
+  }
+
+  public static int getMostCalorificDishInMenuOrDefault(List<Dish> menu) {
+    return getMostCalorificDishInMenu(menu).orElse(0);
   }
 
   public static List<Dish> getDishesOfIncreasingCalorificValue() {
@@ -33,7 +36,7 @@ public class NumericStreams {
         ).collect(toList());
   }
 
-  public static List<Dish> getDishesOfIncreasingCalorificValue2() {
+  public static List<Dish> getDishesOfIncreasingCalorificValueBoxed() {
     return IntStream.rangeClosed(1, 100)
         .filter(n -> n % 2 == 0).limit(3)
         .boxed()
@@ -55,10 +58,13 @@ public class NumericStreams {
   }
 
   public static List<int[]> getPythagoreanTriples() {
-    return IntStream.rangeClosed(1, 100).boxed()
-        .flatMap(a -> IntStream.rangeClosed(a, 100)
-            .filter(b -> Math.sqrt(a * a + b * b) % 1 == 0).boxed()
-            .map(b -> new int[]{a, b, (int) Math.sqrt(a * a + b * b)})
+    return IntStream.rangeClosed(1, 100)
+        .boxed()
+        .flatMap(a ->
+            IntStream.rangeClosed(a, 100)
+                .filter(b -> Math.sqrt(a * a + b * b) % 1 == 0)
+                .boxed()
+                .map(b -> new int[]{a, b, (int) Math.sqrt(a * a + b * b)})
         )
         .limit(5)
         .collect(toList());

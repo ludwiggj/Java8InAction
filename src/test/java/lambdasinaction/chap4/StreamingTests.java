@@ -34,19 +34,19 @@ public class StreamingTests {
   @Test
   @DisplayName("Get sorted list of names of low caloric dishes using idomatic Java7")
   public void shouldGetLowCaloricDishesNamesInJava7(){
-    assertThat(getSortedLowCaloricDishesNamesInJava7(Restaurant.menu), is(expectedLowCaloricDishNames));
+    assertThat(getSortedLowCaloricDishesNamesInJava7(Restaurant.MENU), is(expectedLowCaloricDishNames));
   }
 
   @Test
   @DisplayName("Get sorted list of names of low caloric dishes using idomatic Java8")
   public void shouldGetLowCaloricDishesNamesInJava8() {
-    assertThat(getSortedLowCaloricDishesNamesInJava8(Restaurant.menu), is(expectedLowCaloricDishNames));
+    assertThat(getSortedLowCaloricDishesNamesInJava8(Restaurant.MENU), is(expectedLowCaloricDishNames));
   }
 
   @Test
   @DisplayName("Get three most caloric dishes")
   public void shouldGetThreeHighCaloricDishNames() {
-    assertThat(getThreeHighCaloricDishNames(Restaurant.menu), is(expectedHighCaloricDishNames));
+    assertThat(getThreeHighCaloricDishNames(Restaurant.MENU), is(expectedHighCaloricDishNames));
   }
 
   @Test
@@ -58,7 +58,7 @@ public class StreamingTests {
       put(MEAT, new ArrayList<Dish>() {{ add(PORK); add(BEEF); add(CHICKEN); }});
     }};
 
-    assertThat(getDishesByType(Restaurant.menu), is(expectedResult));
+    assertThat(getDishesByType(Restaurant.MENU), is(expectedResult));
   }
 
   @Test

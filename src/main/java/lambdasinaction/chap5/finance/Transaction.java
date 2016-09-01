@@ -1,8 +1,8 @@
-package lambdasinaction.chap5;
+package lambdasinaction.chap5.finance;
 
 import java.util.Objects;
 
-public class Transaction {
+class Transaction {
 
   private Trader trader;
   private int year;

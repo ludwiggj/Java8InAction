@@ -17,6 +17,8 @@ public class Restaurant {
   public static final String MYSTERY_FISH = "mysteryFish";
   public static final boolean NOT_VEGETARIAN = false;
 
-  public static final List<Dish> menu = Arrays.asList(
+  public static final List<Dish> MENU = Arrays.asList(
       PORK, BEEF, CHICKEN, FRENCH_FRIES, RICE, SEASON_FRUIT, PIZZA, PRAWNS, SALMON);
+
+  public static final List<Dish> EMPTY_MENU = Arrays.asList();
 }

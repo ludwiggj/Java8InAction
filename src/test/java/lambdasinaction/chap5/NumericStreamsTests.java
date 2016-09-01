@@ -1,19 +1,20 @@
-package chap5;
+package lambdasinaction.chap5;
 
 import lambdasinaction.chap4.Dish;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static chap5.Utils.toListOfListsOfIntegers;
-import static java.util.stream.Collectors.toList;
+import static lambdasinaction.chap4.Restaurant.*;
+import static lambdasinaction.chap5.Utils.toListOfListsOfDoubles;
+import static lambdasinaction.chap5.Utils.toListOfListsOfIntegers;
 import static lambdasinaction.chap4.Dish.Type.FISH;
-import static lambdasinaction.chap4.Restaurant.MYSTERY_FISH;
-import static lambdasinaction.chap4.Restaurant.NOT_VEGETARIAN;
 import static lambdasinaction.chap5.NumericStreams.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class NumericStreamsTests {
 
@@ -24,36 +25,55 @@ public class NumericStreamsTests {
   );
 
   @Test
+  @DisplayName("Menu total calories")
   public void shouldGetMenuTotalCalories() {
-    assertThat(getMenuTotalCalories(), is(4300));
+    assertAll("Menu total calories",
+        () -> assertThat(getMenuTotalCalories(MENU), is(4300)),
+        () -> assertThat(getMenuTotalCalories(EMPTY_MENU), is(0))
+    );
   }
 
   @Test
+  @DisplayName("Most calorific dish")
   public void shouldGetMostCalorificDishInMenu() {
-    assertThat(getMostCalorificDishInMenu().getAsInt(), is(800));
+    assertAll("Most calorific dish",
+        () -> assertThat(getMostCalorificDishInMenu(MENU).getAsInt(), is(800)),
+        () -> assertThat(getMostCalorificDishInMenu(EMPTY_MENU).isPresent(), is(false))
+    );
   }
 
   @Test
+  @DisplayName("Most calorific dish or default")
+  public void shouldGetMostCalorificDishInMenuOrDefault() {
+    assertAll("Most calorific dish or default",
+        () -> assertThat(getMostCalorificDishInMenuOrDefault(MENU), is(800)),
+        () -> assertThat(getMostCalorificDishInMenuOrDefault(EMPTY_MENU), is(0))
+    );
+  }
+
+  @Test
+  @DisplayName("Dishes of increasing calorific value")
   public void shouldGetDishesOfIncreasingCalorificValue() {
-    assertThat(getDishesOfIncreasingCalorificValue(), is(EXPECTED_DISHES));
+    assertAll("Dishes of increasing calorific value",
+        () -> assertThat(getDishesOfIncreasingCalorificValue(), is(EXPECTED_DISHES)),
+        () -> assertThat(getDishesOfIncreasingCalorificValueBoxed(), is(EXPECTED_DISHES))
+    );
   }
 
   @Test
-  public void shouldGetDishesOfIncreasingCalorificValue2() {
-    assertThat(getDishesOfIncreasingCalorificValue2(), is(EXPECTED_DISHES));
-  }
-
-  @Test
+  @DisplayName("Count of range")
   public void shouldGetCountOfRange() {
     assertThat(getCountOfRange(), is(49L));
   }
 
   @Test
+  @DisplayName("Count of range closed")
   public void shouldGetCountOfRangeClosed() {
     assertThat(getCountOfRangeClosed(), is(50L));
   }
 
   @Test
+  @DisplayName("Pythagorean triples")
   public void shouldGetPythagoreanTriples() {
     List<List<Integer>> expectedTrips = Arrays.asList(
         Arrays.asList(3, 4, 5),
@@ -69,6 +89,7 @@ public class NumericStreamsTests {
   }
 
   @Test
+  @DisplayName("Pythagorean triples improved")
   public void shouldGetPythagoreanTriplesBetter() {
     List<double[]> expectedTrips = Arrays.asList(
         new double[]{3, 4, 5},
@@ -83,21 +104,12 @@ public class NumericStreamsTests {
     assertThat(toListOfListsOfDoubles(pythagoreanTriples), is(toListOfListsOfDoubles(expectedTrips)));
   }
 
-  private static List<List<Double>> toListOfListsOfDoubles(List<double[]> input) {
-    return input.stream().map(
-        arr -> Arrays.stream(arr)
-            .boxed()
-            .collect(toList())
-    ).collect(toList());
-  }
-
   @Test
+  @DisplayName("Perfect squares")
   public void shouldCorrectlyIdentifyAPerfectSquare() {
-    assertThat(isPerfectSquare(49), is(true));
-  }
-
-  @Test
-  public void shouldCorrectlyIdentifyAnImperfectSquare() throws Exception {
-    assertThat(isPerfectSquare(48), is(false));
+    assertAll("Perfect squares",
+        () -> assertThat(isPerfectSquare(49), is(true)),
+        () -> assertThat(isPerfectSquare(48), is(false))
+    );
   }
 }

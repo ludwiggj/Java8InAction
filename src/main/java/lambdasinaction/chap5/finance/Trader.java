@@ -1,8 +1,8 @@
-package lambdasinaction.chap5;
+package lambdasinaction.chap5.finance;
 
 import java.util.Objects;
 
-public  class Trader{
+class Trader {
 
 	private String name;
 	private String city;
@@ -20,12 +20,8 @@ public  class Trader{
 		return this.city;
 	}
 
-	public void setCity(String newCity){
-		this.city = newCity;
-	}
-
 	public String toString(){
-		return "Trader:"+this.name + " in " + this.city;
+		return "Trader:" + this.name + " in " + this.city;
 	}
 
   @Override

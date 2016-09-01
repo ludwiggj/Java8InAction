@@ -1,14 +1,17 @@
-package lambdasinaction.chap5;
+package lambdasinaction.chap5.finance;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
-public class Traders {
+class Traders {
   public static final Trader raoul = new Trader("Raoul", "Cambridge");
   public static final Trader mario = new Trader("Mario", "Milan");
   public static final Trader alan = new Trader("Alan", "Cambridge");
@@ -36,8 +39,13 @@ public class Traders {
     return transactions.stream()
         .map(tx -> tx.getTrader().getCity())
         .distinct()
-        .sorted()
         .collect(toList());
+  }
+
+  public static Set<String> getAllUniqueCitiesTake2() {
+    return transactions.stream()
+        .map(tx -> tx.getTrader().getCity())
+        .collect(toSet());
   }
 
   public static List<Trader> getAllCambridgeTradersSortedByName() {
@@ -58,13 +66,22 @@ public class Traders {
         .reduce("", (s1, s2) -> s1 + s2);
   }
 
+  public static String getTradersNamesSortedAlphabeticallyTake2() {
+    return transactions.stream()
+        .map(Transaction::getTrader)
+        .map(Trader::getName)
+        .distinct()
+        .sorted()
+        .collect(joining());
+  }
+
   public static boolean getTradersBasedInMilan() {
     return transactions.stream()
         .map(Transaction::getTrader)
         .anyMatch(t -> t.getCity().equals("Milan"));
   }
 
-  public static boolean getTradersBasedInMilan2() {
+  public static boolean getTradersBasedInMilanTake2() {
     return transactions.stream()
         .anyMatch(t -> t.getTrader().getCity().equals("Milan"));
   }
@@ -90,7 +107,7 @@ public class Traders {
         .reduce((tx1, tx2) -> tx1.getValue() < tx2.getValue() ? tx1 : tx2);
   }
 
-  public static Optional<Transaction> getTransactionOfSmallestValue2() {
+  public static Optional<Transaction> getTransactionOfSmallestValueTake2() {
     return transactions.stream().min(comparing(Transaction::getValue));
   }
 

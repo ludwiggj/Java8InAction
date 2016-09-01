@@ -6,24 +6,24 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static lambdasinaction.chap4.Restaurant.menu;
+import static lambdasinaction.chap4.Restaurant.MENU;
 
 public class Finding {
 
   public static boolean isVegetarianFriendlyMenu() {
-    return menu.stream().anyMatch(Dish::isVegetarian);
+    return MENU.stream().anyMatch(Dish::isVegetarian);
   }
 
   public static boolean isHealthyMenu() {
-    return menu.stream().allMatch(d -> d.getCalories() < 1000);
+    return MENU.stream().allMatch(d -> d.getCalories() < 1000);
   }
 
   public static boolean isHealthyMenu2() {
-    return menu.stream().noneMatch(d -> d.getCalories() >= 1000);
+    return MENU.stream().noneMatch(d -> d.getCalories() >= 1000);
   }
 
   public static Optional<Dish> findVegetarianDish() {
-    return menu.stream().filter(Dish::isVegetarian).findAny();
+    return MENU.stream().filter(Dish::isVegetarian).findAny();
   }
 
   public static Optional<Integer> findFirstSquareDivisibleByThree() {

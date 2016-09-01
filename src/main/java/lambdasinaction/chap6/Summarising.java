@@ -11,11 +11,11 @@ public class Summarising {
     public static void main(String ... args) {
         System.out.println("The most caloric dish is: " + findMostCalorificDish(menu));
         System.out.println("The most caloric dish is: " + findMostCalorificDishUsingComparator());
-        System.out.println("Total calories in menu: " + calculateTotalCalories());
-        System.out.println("Average calories in menu: " + calculateAverageCalories());
+        System.out.println("Total calories in MENU: " + calculateTotalCalories());
+        System.out.println("Average calories in MENU: " + calculateAverageCalories());
         System.out.println("Menu statistics: " + calculateMenuStatistics());
-        System.out.println("Short menu: " + getShortMenu());
-        System.out.println("Short menu comma separated: " + getShortMenuCommaSeparated());
+        System.out.println("Short MENU: " + getShortMenu());
+        System.out.println("Short MENU comma separated: " + getShortMenuCommaSeparated());
     }
 
 

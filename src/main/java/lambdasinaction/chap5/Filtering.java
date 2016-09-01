@@ -6,12 +6,13 @@ import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 
-import static lambdasinaction.chap4.Restaurant.menu;
+import static lambdasinaction.chap4.Dish.Type.*;
+import static lambdasinaction.chap4.Restaurant.MENU;
 
 public class Filtering {
 
   public static List<Dish> getVegetarianDishes() {
-    return menu.stream()
+    return MENU.stream()
         .filter(Dish::isVegetarian)
         .collect(toList());
   }
@@ -25,22 +26,22 @@ public class Filtering {
   }
 
   public static List<Dish> getFirstThreeDishesOver300Calories() {
-    return menu.stream()
+    return MENU.stream()
         .filter(d -> d.getCalories() > 300)
         .limit(3)
         .collect(toList());
   }
 
   public static List<Dish> getAllButFirstTwoDishesOver300Calories() {
-    return menu.stream()
+    return MENU.stream()
         .filter(d -> d.getCalories() > 300)
         .skip(2)
         .collect(toList());
   }
 
   public static List<Dish> getFirstTwoMeatDishes() {
-    return menu.stream()
-        .filter(d -> d.getType() == Dish.Type.MEAT)
+    return MENU.stream()
+        .filter(d -> d.getType() == MEAT)
         .limit(2)
         .collect(toList());
   }

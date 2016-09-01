@@ -6,10 +6,10 @@ import static lambdasinaction.chap6.Dish.menu;
 public class Reducing {
 
     public static void main(String ... args) {
-        System.out.println("Total calories in menu: " + calculateTotalCalories());
-        System.out.println("Total calories in menu: " + calculateTotalCaloriesWithMethodReference());
-        System.out.println("Total calories in menu: " + calculateTotalCaloriesWithoutCollectors());
-        System.out.println("Total calories in menu: " + calculateTotalCaloriesUsingSum());
+        System.out.println("Total calories in MENU: " + calculateTotalCalories());
+        System.out.println("Total calories in MENU: " + calculateTotalCaloriesWithMethodReference());
+        System.out.println("Total calories in MENU: " + calculateTotalCaloriesWithoutCollectors());
+        System.out.println("Total calories in MENU: " + calculateTotalCaloriesUsingSum());
     }
 
     private static int calculateTotalCalories() {

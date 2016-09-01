@@ -6,32 +6,18 @@ import java.util.*;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
-import static lambdasinaction.chap4.Restaurant.menu;
+import static lambdasinaction.chap4.Restaurant.MENU;
 
 public class Mapping {
 
-  public static void main(String... args) {
-    // flatMap
-    List<Integer> numbers1 = Arrays.asList(1, 2, 3, 4, 5);
-    List<Integer> numbers2 = Arrays.asList(6, 7, 8);
-    List<int[]> pairs =
-        numbers1.stream()
-            .flatMap((Integer i) -> numbers2.stream()
-                .map((Integer j) -> new int[]{i, j})
-            )
-            .filter(pair -> (pair[0] + pair[1]) % 3 == 0)
-            .collect(toList());
-    pairs.forEach(pair -> System.out.println("(" + pair[0] + ", " + pair[1] + ")"));
-  }
-
   public static List<String> getDishNames() {
-    return menu.stream()
+    return MENU.stream()
         .map(Dish::getName)
         .collect(toList());
   }
 
   public static List<Integer> getDishNameLengths() {
-    return menu.stream()
+    return MENU.stream()
         .map(Dish::getName)
         .map(String::length)
         .collect(toList());
@@ -45,9 +31,9 @@ public class Mapping {
 
   public static List<Integer> getWordLengths2() {
     String[] arrayOfWords = {"Goodbye", "World"};
-    Stream<String> streamOfwords = Arrays.stream(arrayOfWords);
+    Stream<String> streamOfWords = Arrays.stream(arrayOfWords);
 
-    return streamOfwords.map(String::length).collect(toList());
+    return streamOfWords.map(String::length).collect(toList());
   }
 
   public static List<String[]> incorrectUniqueCharacters() {
