@@ -19,9 +19,9 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 public class NumericStreamsTests {
 
   public static final List<Dish> EXPECTED_DISHES = Arrays.asList(
-      new Dish(MYSTERY_FISH, NOT_VEGETARIAN, 200, FISH),
-      new Dish(MYSTERY_FISH, NOT_VEGETARIAN, 400, FISH),
-      new Dish(MYSTERY_FISH, NOT_VEGETARIAN, 600, FISH)
+      new Dish(Dish.MYSTERY_FISH, Dish.NOT_VEGETARIAN, 200, FISH),
+      new Dish(Dish.MYSTERY_FISH, Dish.NOT_VEGETARIAN, 400, FISH),
+      new Dish(Dish.MYSTERY_FISH, Dish.NOT_VEGETARIAN, 600, FISH)
   );
 
   @Test

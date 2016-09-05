@@ -10,7 +10,6 @@ import static java.util.stream.Collectors.*;
 import static lambdasinaction.chap4.Dish.Type.FISH;
 import static lambdasinaction.chap4.Dish.Type.MEAT;
 import static lambdasinaction.chap4.Dish.Type.OTHER;
-import static lambdasinaction.chap4.Restaurant.*;
 import static lambdasinaction.chap4.Streaming.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -20,13 +19,13 @@ import static org.junit.jupiter.api.Assertions.expectThrows;
 public class StreamingTests {
 
   private static List<String> expectedLowCaloricDishNames =
-      Arrays.asList(SEASON_FRUIT, RICE)
+      Arrays.asList(Dish.SEASON_FRUIT, Dish.RICE)
           .stream()
           .map(Dish::getName)
           .collect(toList());
 
   private static List<String> expectedHighCaloricDishNames =
-      Arrays.asList(PORK, BEEF, CHICKEN)
+      Arrays.asList(Dish.PORK, Dish.BEEF, Dish.CHICKEN)
                 .stream()
                 .map(Dish::getName)
                 .collect(toList());
@@ -53,9 +52,9 @@ public class StreamingTests {
   @DisplayName("Get dishes by type")
   public void shouldGetDishesByType() {
     Map<Dish.Type, List<Dish>> expectedResult = new HashMap<Dish.Type, List<Dish>>() {{
-      put(FISH, new ArrayList<Dish>() {{ add(PRAWNS); add(SALMON); }});
-      put(OTHER, new ArrayList<Dish>() {{ add(FRENCH_FRIES); add(RICE); add(SEASON_FRUIT); add(PIZZA); }});
-      put(MEAT, new ArrayList<Dish>() {{ add(PORK); add(BEEF); add(CHICKEN); }});
+      put(FISH, new ArrayList<Dish>() {{ add(Dish.PRAWNS); add(Dish.SALMON); }});
+      put(OTHER, new ArrayList<Dish>() {{ add(Dish.FRENCH_FRIES); add(Dish.RICE); add(Dish.SEASON_FRUIT); add(Dish.PIZZA); }});
+      put(MEAT, new ArrayList<Dish>() {{ add(Dish.PORK); add(Dish.BEEF); add(Dish.CHICKEN); }});
     }};
 
     assertThat(getDishesByType(Restaurant.MENU), is(expectedResult));

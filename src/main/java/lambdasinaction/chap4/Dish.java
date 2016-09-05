@@ -2,66 +2,78 @@ package lambdasinaction.chap4;
 
 public class Dish {
 
-    private final String name;
-    private final boolean vegetarian;
-    private final int calories;
-    private final Type type;
+  public static final Dish PORK = new Dish("pork", false, 800, Type.MEAT);
+  public static final Dish BEEF = new Dish("beef", false, 700, Type.MEAT);
+  public static final Dish CHICKEN = new Dish("chicken", false, 400, Type.MEAT);
+  public static final Dish FRENCH_FRIES = new Dish("french fries", true, 530, Type.OTHER);
+  public static final Dish RICE = new Dish("rice", true, 350, Type.OTHER);
+  public static final Dish SEASON_FRUIT = new Dish("season fruit", true, 120, Type.OTHER);
+  public static final Dish PIZZA = new Dish("pizza", true, 550, Type.OTHER);
+  public static final Dish PRAWNS = new Dish("prawns", false, 400, Type.FISH);
+  public static final Dish SALMON = new Dish("salmon", false, 450, Type.FISH);
+  public static final String MYSTERY_FISH = "mysteryFish";
+  public static final boolean NOT_VEGETARIAN = false;
 
-    public Dish(String name, boolean vegetarian, int calories, Type type) {
-        this.name = name;
-        this.vegetarian = vegetarian;
-        this.calories = calories;
-        this.type = type;
-    }
+  private final String name;
+  private final boolean vegetarian;
+  private final int calories;
+  private final Type type;
 
-    public String getName() {
-        return name;
-    }
+  public Dish(String name, boolean vegetarian, int calories, Type type) {
+    this.name = name;
+    this.vegetarian = vegetarian;
+    this.calories = calories;
+    this.type = type;
+  }
 
-    public boolean isVegetarian() {
-        return vegetarian;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public int getCalories() {
-        return calories;
-    }
+  public boolean isVegetarian() {
+    return vegetarian;
+  }
 
-    public Type getType() {
-        return type;
-    }
+  public int getCalories() {
+    return calories;
+  }
 
-    public enum Type { MEAT, FISH, OTHER }
+  public Type getType() {
+    return type;
+  }
 
-    @Override
-    public String toString() {
-        return "Dish{" +
-            "name='" + name + '\'' +
-            ", vegetarian=" + vegetarian +
-            ", calories=" + calories +
-            ", type=" + type +
-            '}';
-    }
+  public enum Type {MEAT, FISH, OTHER}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Dish)) return false;
+  @Override
+  public String toString() {
+    return "Dish { " +
+        "name='" + name + '\'' +
+        ", vegetarian=" + vegetarian +
+        ", calories=" + calories +
+        ", type=" + type +
+        " }";
+  }
 
-        Dish dish = (Dish) o;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Dish)) return false;
 
-        if (vegetarian != dish.vegetarian) return false;
-        if (calories != dish.calories) return false;
-        if (name != null ? !name.equals(dish.name) : dish.name != null) return false;
-        return type == dish.type;
-    }
+    Dish dish = (Dish) o;
 
-    @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (vegetarian ? 1 : 0);
-        result = 31 * result + calories;
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        return result;
-    }
+    if (vegetarian != dish.vegetarian) return false;
+    if (calories != dish.calories) return false;
+    if (name != null ? !name.equals(dish.name) : dish.name != null) return false;
+    return type == dish.type;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = name != null ? name.hashCode() : 0;
+    result = 31 * result + (vegetarian ? 1 : 0);
+    result = 31 * result + calories;
+    result = 31 * result + (type != null ? type.hashCode() : 0);
+    return result;
+  }
 
 }

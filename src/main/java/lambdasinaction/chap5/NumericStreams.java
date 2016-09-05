@@ -7,8 +7,8 @@ import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 import static lambdasinaction.chap4.Dish.Type.FISH;
-import static lambdasinaction.chap4.Restaurant.MYSTERY_FISH;
-import static lambdasinaction.chap4.Restaurant.NOT_VEGETARIAN;
+import static lambdasinaction.chap4.Dish.MYSTERY_FISH;
+import static lambdasinaction.chap4.Dish.NOT_VEGETARIAN;
 
 public class NumericStreams {
 

@@ -1,12 +1,12 @@
 package lambdasinaction.chap5;
 
+import lambdasinaction.chap4.Dish;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static lambdasinaction.chap4.Restaurant.*;
 import static lambdasinaction.chap5.Mapping.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -20,15 +20,15 @@ public class MappingTests {
   public void shouldGetDishNames() {
     List<String> expectedDishNames =
         Arrays.asList(
-            PORK.getName(),
-            BEEF.getName(),
-            CHICKEN.getName(),
-            FRENCH_FRIES.getName(),
-            RICE.getName(),
-            SEASON_FRUIT.getName(),
-            PIZZA.getName(),
-            PRAWNS.getName(),
-            SALMON.getName()
+            Dish.PORK.getName(),
+            Dish.BEEF.getName(),
+            Dish.CHICKEN.getName(),
+            Dish.FRENCH_FRIES.getName(),
+            Dish.RICE.getName(),
+            Dish.SEASON_FRUIT.getName(),
+            Dish.PIZZA.getName(),
+            Dish.PRAWNS.getName(),
+            Dish.SALMON.getName()
         );
 
     assertThat(getDishNames(), is(expectedDishNames));
