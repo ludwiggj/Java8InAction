@@ -9,11 +9,12 @@ import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static lambdasinaction.chap6.PartitionPrimeNumbers.*;
+import static lambdasinaction.chap6.PartitionPrimeNumbersCustomCollector.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class PartitionPrimeNumbersTest {
+public class PartitionPrimeNumbersTests {
 
   @Test
   @DisplayName("Primes in range 1..100")
@@ -33,7 +34,10 @@ public class PartitionPrimeNumbersTest {
     assertAll("Primes in range 1..100",
         () -> assertThat(partitionPrimesTake1(100), is(expectedPrimes)),
         () -> assertThat(partitionPrimesTake2(100), is(expectedPrimes)),
-        () -> assertThat(partitionPrimesTake3(100), is(expectedPrimes))
+        () -> assertThat(partitionPrimesTake3(100), is(expectedPrimes)),
+        () -> assertThat(partitionPrimesWithCustomCollector(100), is(expectedPrimes)),
+        () -> assertThat(partitionPrimesWithInlineCollector(100), is(expectedPrimes)),
+        () -> assertThat(partitionPrimesWithInlineCollectorTake2(100), is(expectedPrimes))
     );
   }
 }

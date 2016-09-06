@@ -7,7 +7,7 @@ import java.util.Arrays;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class CollectVsReduceTest {
+public class CollectVsReduceTests {
 
   @Test
   @DisplayName("List from stream via reduce")
