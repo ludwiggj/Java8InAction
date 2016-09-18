@@ -7,10 +7,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-import java.util.function.IntFunction;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 import static lambdasinaction.chap1.Apple.*;
 import static lambdasinaction.chap1.Apple.DEFAULT_WEIGHT;
@@ -140,5 +137,33 @@ public class MethodReferenceTests {
   public void shouldConstructThreeArgumentClassFromConstructorReference() {
     TriFunction<Integer, Integer, Integer, Colour> pallette = Colour::new;
     assertThat(pallette.apply(20, 40, 60), is(new Colour(20, 40, 60)));
+  }
+
+  public String extractSubString(BiFunction<String, Integer, String> ss, String s, int i) {
+    return ss.apply(s, i);
+  }
+
+  @Test
+  @DisplayName("SubString using lambda")
+  public void shouldGetSubstringViaLambda() {
+    assertThat(extractSubString((s, i) -> s.substring(i), "Hello Dolly", 6), is("Dolly"));
+  }
+
+  @Test
+  @DisplayName("SubString using method reference")
+  public void shouldGetSubstringViaMethodRef() {
+    assertThat(extractSubString(String::substring, "Hello Dolly", 6), is("Dolly"));
+  }
+
+  @Test
+  @DisplayName("Parse to integer")
+  public void shouldParseToInteger() {
+    ToIntFunction<String> parserLambda = s -> Integer.parseInt(s);
+    ToIntFunction<String> parserMethodRef = Integer::parseInt;
+
+    assertAll("Parse",
+        () -> assertThat(parserLambda.applyAsInt("123"), is(123)),
+        () -> assertThat(parserMethodRef.applyAsInt("456"), is(456))
+    );
   }
 }

@@ -19,6 +19,10 @@ public class Dish {
   private final int calories;
   private final Type type;
 
+  public enum Type {MEAT, FISH, OTHER;}
+
+  public enum CaloricLevel {DIET, NORMAL, FAT;}
+
   public Dish(String name, boolean vegetarian, int calories, Type type) {
     this.name = name;
     this.vegetarian = vegetarian;
@@ -42,7 +46,11 @@ public class Dish {
     return type;
   }
 
-  public enum Type {MEAT, FISH, OTHER}
+  public CaloricLevel getCaloricLevel() {
+    if (calories <= 400) return CaloricLevel.DIET;
+    else if (calories <= 700) return CaloricLevel.NORMAL;
+    else return CaloricLevel.FAT;
+  }
 
   @Override
   public String toString() {
@@ -75,5 +83,4 @@ public class Dish {
     result = 31 * result + (type != null ? type.hashCode() : 0);
     return result;
   }
-
 }

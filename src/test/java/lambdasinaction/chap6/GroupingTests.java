@@ -1,7 +1,7 @@
 package lambdasinaction.chap6;
 
 import lambdasinaction.chap4.Dish;
-import lambdasinaction.chap6.GroupingDishes.CaloricLevel;
+import lambdasinaction.chap4.Dish.CaloricLevel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ import static java.util.Arrays.asList;
 import static lambdasinaction.chap4.Dish.*;
 import static lambdasinaction.chap4.Dish.Type.*;
 import static lambdasinaction.chap6.GroupingDishes.*;
-import static lambdasinaction.chap6.GroupingDishes.CaloricLevel.*;
+import static lambdasinaction.chap4.Dish.CaloricLevel.*;
 import static lambdasinaction.chap6.GroupingTransactions.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -46,7 +46,10 @@ public class GroupingTests {
             put(FAT, asList(PORK));
           }};
 
-      assertThat(groupDishesByCalorificLevel(), is(expectedDishesByType));
+      assertAll("Group dishes by calorific level",
+          () -> assertThat(groupDishesByCalorificLevel(), is(expectedDishesByType)),
+          () -> assertThat(groupDishesByCalorificLevelMethodRef(), is(expectedDishesByType))
+      );
     }
 
     @Test
@@ -129,9 +132,19 @@ public class GroupingTests {
     public void shouldGetMenuCaloricLevelsByDishType() {
 
       Map<Dish.Type, Set<CaloricLevel>> expectedCaloricLevelsByType = new HashMap<Dish.Type, Set<CaloricLevel>>() {{
-        put(FISH, new HashSet<CaloricLevel>() {{ add(DIET); add(NORMAL); }});
-        put(OTHER, new HashSet<CaloricLevel>() {{ add(DIET); add(NORMAL); }});
-        put(MEAT, new HashSet<CaloricLevel>() {{ add(DIET); add(NORMAL); add(FAT); }});
+        put(FISH, new HashSet<CaloricLevel>() {{
+          add(DIET);
+          add(NORMAL);
+        }});
+        put(OTHER, new HashSet<CaloricLevel>() {{
+          add(DIET);
+          add(NORMAL);
+        }});
+        put(MEAT, new HashSet<CaloricLevel>() {{
+          add(DIET);
+          add(NORMAL);
+          add(FAT);
+        }});
       }};
 
       assertAll("Menu caloric levels by dish type",

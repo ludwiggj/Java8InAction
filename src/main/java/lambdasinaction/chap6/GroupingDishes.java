@@ -11,23 +11,26 @@ import static lambdasinaction.chap4.Restaurant.MENU;
 
 public class GroupingDishes {
 
-  enum CaloricLevel {DIET, NORMAL, FAT}
-
-  private static final Function<Dish, CaloricLevel> dishCaloricLevel = dish -> {
-    if (dish.getCalories() <= 400) return CaloricLevel.DIET;
-    else if (dish.getCalories() <= 700) return CaloricLevel.NORMAL;
-    else return CaloricLevel.FAT;
+  private static final Function<Dish, Dish.CaloricLevel> dishCaloricLevel = dish -> {
+    if (dish.getCalories() <= 400) return Dish.CaloricLevel.DIET;
+    else if (dish.getCalories() <= 700) return Dish.CaloricLevel.NORMAL;
+    else return Dish.CaloricLevel.FAT;
   };
 
   public static Map<Dish.Type, List<Dish>> groupDishesByType() {
     return MENU.stream().collect(groupingBy(Dish::getType));
   }
 
-  public static Map<CaloricLevel, List<Dish>> groupDishesByCalorificLevel() {
+  public static Map<Dish.CaloricLevel, List<Dish>> groupDishesByCalorificLevel() {
     return MENU.stream().collect(groupingBy(dishCaloricLevel));
   }
 
-  public static Map<Dish.Type, Map<CaloricLevel, List<Dish>>> groupDishedByTypeAndThenCalorificLevel() {
+  // Replace lambda expression with method reference for improved clarity
+  public static Map<Dish.CaloricLevel, List<Dish>> groupDishesByCalorificLevelMethodRef() {
+    return MENU.stream().collect(groupingBy(Dish::getCaloricLevel));
+  }
+
+  public static Map<Dish.Type, Map<Dish.CaloricLevel, List<Dish>>> groupDishedByTypeAndThenCalorificLevel() {
     return MENU.stream().collect(
         groupingBy(Dish::getType,
             groupingBy(dishCaloricLevel)
@@ -64,13 +67,13 @@ public class GroupingDishes {
         summingInt(Dish::getCalories)));
   }
 
-  public static Map<Dish.Type, Set<CaloricLevel>> caloricLevelsByType() {
+  public static Map<Dish.Type, Set<Dish.CaloricLevel>> caloricLevelsByType() {
     return MENU.stream().collect(
         groupingBy(Dish::getType, mapping(dishCaloricLevel, toSet()))
     );
   }
 
-  public static Map<Dish.Type, Set<CaloricLevel>> caloricLevelsByTypeWithExplicitSet() {
+  public static Map<Dish.Type, Set<Dish.CaloricLevel>> caloricLevelsByTypeWithExplicitSet() {
     return MENU.stream().collect(
         groupingBy(Dish::getType, mapping(dishCaloricLevel, toCollection(HashSet::new)))
     );
