@@ -1,0 +1,53 @@
+To try out the scenario described in section 8.1 on Evolving APIs you need to do the following:
+
+compile individual files as follows from the directory src/main/java:
+
+javac lambdasinaction/chap9/shapes/Resizable.java
+javac lambdasinaction/chap9/shapes/Ellipse.java
+javac lambdasinaction/chap9/shapes/Utils.java
+javac lambdasinaction/chap9/shapes/Game.java
+
+You can run the application and everything will work:
+
+java lambdasinaction/chap9/shapes/Game
+
+You can now modify the interface Resizable and add the method "setRelativeSize".
+
+Compile and run, no problem:
+
+javac lambdasinaction/chap9/shapes/Resizable.java
+
+Now modify Utils to use the new setRelativeSize method available on all kinds of Resizable.
+Just uncomment the appropriate the line in Utils, compile, run, and you'll have a surprise!
+
+Suggested error:
+
+javac lambdasinaction/chap9/shapes/Ellipse.java
+lambdasinaction/chap9/shapes/Ellipse.java:6: error: Ellipse is not abstract and does not override abstract method
+setRelativeSize(int,int) in Resizable
+public class Ellipse implements Resizable {
+       ^
+1 error
+
+Actual error:
+
+Exception in thread "main" java.lang.AbstractMethodError: lambdasinaction.chap9.shapes.Square.setRelativeSize(II)V
+
+If add implementations of setRelativeSize to Square and Triangle, and compile them, then try again, get a different
+error message:
+
+Exception in thread "main" java.lang.AbstractMethodError
+	at lambdasinaction.chap9.shapes.Utils.lambda$paint$1(Utils.java:10)
+	at lambdasinaction.chap9.shapes.Utils$$Lambda$2/1418481495.accept(Unknown Source)
+	at java.util.Arrays$ArrayList.forEach(Arrays.java:3880)
+	at lambdasinaction.chap9.shapes.Utils.paint(Utils.java:10)
+	at lambdasinaction.chap9.shapes.Game.main(Game.java:10)
+
+Note also that recompiling the whole application will fail because Ellipse doesn't implement the new method
+setRelativeSize.
+
+The problem can be fixed by ensuring that setRelativeSize is a default method:
+
+public default void setRelativeSize(int widthFactor, int heightFactor) {
+    // a default implementation
+}
