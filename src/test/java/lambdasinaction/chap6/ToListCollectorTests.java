@@ -13,7 +13,7 @@ import static java.util.Arrays.asList;
 import static lambdasinaction.chap4.Dish.*;
 import static lambdasinaction.chap4.Restaurant.MENU;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class ToListCollectorTests {

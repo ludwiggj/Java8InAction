@@ -13,7 +13,7 @@ import static lambdasinaction.chap4.Dish.Type.OTHER;
 import static lambdasinaction.chap4.Streaming.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.expectThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("Streaming tests")
 public class StreamingTests {
@@ -73,7 +73,7 @@ public class StreamingTests {
 
     assertThat(result[0], is("Java8LambdasInAction"));
 
-    expectThrows(IllegalStateException.class, () -> {
+    assertThrows(IllegalStateException.class, () -> {
       s.forEach(System.out::println);
     });
   }

@@ -8,8 +8,7 @@ import java.util.Optional;
 import static lambdasinaction.chap10.Insurance.UNKNOWN;
 import static lambdasinaction.chap10.InsuranceAssociation.getCarInsuranceName;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class InsuranceAssociationTests {
 

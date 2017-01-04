@@ -6,11 +6,10 @@ import org.junit.jupiter.api.Test;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.expectThrows;
-
 import static lambdasinaction.chap3.ExecuteAround.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("Execute around tests to read file content")
 public class ExecuteAroundTests {
@@ -42,7 +41,7 @@ public class ExecuteAroundTests {
   @Test
   @DisplayName("Should catch exception thrown when process file")
   public void shouldCatchExceptionThrownWhenProcessFile() {
-    RuntimeException rte = expectThrows(RuntimeException.class, () -> {
+    RuntimeException rte = assertThrows(RuntimeException.class, () -> {
       processFileWithoutCheckedException((BufferedReader b) -> {
         throw new IOException("Oh");
       });
@@ -54,7 +53,7 @@ public class ExecuteAroundTests {
   @Test
   @DisplayName("Should catch exception when process non-existent file")
   public void shouldCatchExceptionWhenProcessNonExistentFile() {
-    RuntimeException rte = expectThrows(RuntimeException.class, () -> {
+    RuntimeException rte = assertThrows(RuntimeException.class, () -> {
       processFileWithoutCheckedException2("fileThatDoesNotExist");
     });
 

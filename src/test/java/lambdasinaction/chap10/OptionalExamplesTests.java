@@ -14,9 +14,8 @@ import static java.util.Optional.empty;
 import static java.util.Optional.of;
 import static lambdasinaction.chap10.OptionalExamples.*;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OptionalExamplesTests {
 

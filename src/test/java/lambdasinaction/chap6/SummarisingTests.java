@@ -3,18 +3,18 @@ package lambdasinaction.chap6;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static lambdasinaction.chap4.Dish.*;
-import static lambdasinaction.chap4.Restaurant.MENU;
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.expectThrows;
-
 import java.util.ArrayList;
 import java.util.IntSummaryStatistics;
 import java.util.NoSuchElementException;
 
+import static lambdasinaction.chap4.Dish.PORK;
+import static lambdasinaction.chap4.Dish.SEASON_FRUIT;
+import static lambdasinaction.chap4.Restaurant.MENU;
 import static lambdasinaction.chap6.ReducingAndSummarising.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SummarisingTests {
 
@@ -44,7 +44,7 @@ public class SummarisingTests {
   @Test
   @DisplayName("Most calorific dish of empty list does not exist")
   public void shouldFindMostCalorificDishFromEmptyMenu() {
-    expectThrows(NoSuchElementException.class, () -> {
+    assertThrows(NoSuchElementException.class, () -> {
       findMostCalorificDishViaReducing(new ArrayList<>());
     });
   }
