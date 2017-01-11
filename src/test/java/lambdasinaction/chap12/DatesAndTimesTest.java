@@ -6,14 +6,11 @@ import org.junit.jupiter.api.Test;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.*;
-import java.time.chrono.JapaneseDate;
+import java.time.chrono.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoField;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
-import java.time.temporal.UnsupportedTemporalTypeException;
+import java.time.temporal.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -385,6 +382,32 @@ public class DatesAndTimesTest {
     LocalDate date = LocalDate.of(2014, 3, 18);
     JapaneseDate japaneseDate = JapaneseDate.from(date);
     assertThat(japaneseDate.toString(), is("Japanese Heisei 26-03-18"));
+
+    // Alternatively, you can explicitly create a calendar system for a specific Locale and create
+    // an instance of a date for that Locale. In the new Date and Time API, the Chronology
+    // interface models a calendar system, and you can obtain an instance of it using its
+    // ofLocale static factory method:
+
+    Chronology japaneseChronology = Chronology.ofLocale(Locale.JAPAN);
+    ChronoLocalDate nowDateInJapan = japaneseChronology.dateNow();
+    System.out.println(nowDateInJapan.toString());
+
+    LocalDateTime localDateTime = LocalDateTime.of(2014, Month.MARCH, 18, 13, 45, 20);
+    ChronoLocalDateTime nowDateTimeInJapan = japaneseChronology.localDateTime(localDateTime);
+    System.out.println(nowDateTimeInJapan.toString());
+  }
+
+  @Test
+  @DisplayName("Islamic calendar workout")
+  public void islamicCalendarWorkout() {
+    // The following code illustrates an example of displaying the start and end dates of Ramadan
+    // for the current Islamic year in ISO date:
+
+    // Get current Hijrah date; then change it to have the first day of Ramadan, which is the 9th month.
+    HijrahDate ramadanDate = HijrahDate.now().with(ChronoField.DAY_OF_MONTH, 1).with(ChronoField.MONTH_OF_YEAR, 9);
+
+    System.out.println("Ramadan starts on " + IsoChronology.INSTANCE.date(ramadanDate) + " and ends on " +
+        IsoChronology.INSTANCE.date(ramadanDate.with(TemporalAdjusters.lastDayOfMonth())));
   }
 
   @Test
